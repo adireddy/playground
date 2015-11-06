@@ -1,0 +1,20 @@
+-cmd haxelib newrepo
+--next
+
+-cp src
+
+--each
+
+-main webworkers.Main
+-js js/main.js
+
+--next
+-main webworkers.WorkerMain
+-js js/webworkers.js
+
+--next
+
+-js js/WorkerScript.js
+webworkers.WorkerScript
+-debug
+-D source-map-content
