@@ -1,5 +1,6 @@
 package webworkers;
 
+import haxe.Json;
 import js.html.XMLHttpRequest;
 import js.html.Uint8ClampedArray;
 import js.Browser;
@@ -10,6 +11,8 @@ import js.html.VideoElement;
 import js.html.ImageElement;
 
 class Main2 {
+
+	var _jsonData:Dynamic;
 
 	var _videoElement:VideoElement;
 	var _videoCover:ImageElement;
@@ -130,6 +133,8 @@ class Main2 {
 		}
 
 		trace(_data);
+
+		_getJsonData("AccessOrder");
 	}
 
 	function _loadJson() {
@@ -137,13 +142,23 @@ class Main2 {
 		request.onreadystatechange = function() {
 			if (request.readyState == 4) {
 				if (request.status == 200) {
-					trace(request.responseText);
+					_jsonData = Json.parse(request.responseText);
+					trace(_jsonData);
 				}
 			}
 		}
 
 		request.open("GET", "resources/checkstyle-config.json", true);
 		request.send(null);
+	}
+
+	function _getJsonData(type:String) {
+		for (i in 0 ... _jsonData.checks.length) {
+			if (_jsonData.checks[i].type == type) {
+				trace(_jsonData.checks[i]);
+				break;
+			}
+		}
 	}
 
 	static function main() {

@@ -54,6 +54,8 @@ class WorkerMainJson {
 			_worker.postMessage(_context.getImageData(0, 4, 400, 1).data);
 		}
 		else trace(e.data);
+
+		_worker2.postMessage("AccessOrder");
 	}
 
 	function _processWorkerJsonData(e) {
