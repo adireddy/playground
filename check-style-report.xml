@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="5.7">
+	<file name="src&#x2F;checkstyle&#x2F;ITest.hx">
+	</file>
+	<file name="src&#x2F;checkstyle&#x2F;Main.hx">
+	</file>
+</checkstyle>

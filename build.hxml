@@ -1,4 +1,9 @@
 -cmd haxelib newrepo
+-cmd haxelib install checkstyle | true
+--next
+
+-cmd haxelib run checkstyle -s src/checkstyle -c resources/checkstyle-config.json -report
+
 --next
 
 -cp src
@@ -13,8 +18,19 @@
 -js js/webworkers.js
 
 --next
-
--js js/WorkerScript.js
-webworkers.WorkerScript
+-js js/VideoData.js
+webworkers.VideoData
 -debug
 -D source-map-content
+
+--next
+-main webworkers.Main2
+-js js/main2.js
+
+--next
+-main webworkers.WorkerMainJson
+-js js/webworkersjson.js
+
+--next
+-js js/LoadJson.js
+webworkers.LoadJson

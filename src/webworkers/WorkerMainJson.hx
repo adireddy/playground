@@ -7,7 +7,7 @@ import js.html.VideoElement;
 import js.html.ImageElement;
 import js.html.Worker;
 
-class WorkerMain {
+class WorkerMainJson {
 
 	var _videoElement:VideoElement;
 	var _videoCover:ImageElement;
@@ -15,10 +15,15 @@ class WorkerMain {
 	var _context:CanvasRenderingContext2D;
 
 	var _worker:Worker;
+	var _worker2:Worker;
 
 	public function new() {
 		_worker = new js.html.Worker("js/VideoData.js");
 		_worker.onmessage = _processWorkerData;
+
+		_worker2 = new js.html.Worker("js/LoadJson.js");
+		_worker2.onmessage = _processWorkerJsonData;
+		_worker2.postMessage("load");
 
 		_videoElement = Browser.document.createVideoElement();
 		_videoElement.id = "videoWheel";
@@ -51,7 +56,11 @@ class WorkerMain {
 		else trace(e.data);
 	}
 
+	function _processWorkerJsonData(e) {
+		trace(e.data);
+	}
+
 	static function main() {
-		new WorkerMain();
+		new WorkerMainJson();
 	}
 }

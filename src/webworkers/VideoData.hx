@@ -1,14 +1,18 @@
 package webworkers;
 
+import haxe.Timer;
 import js.html.Uint8ClampedArray;
 
-class WorkerScript {
+class VideoData {
 
 	public static function __init__() {
-		untyped __js__("self.onmessage = webworkers_WorkerScript.prototype.messageHandler");
+		untyped __js__("self.onmessage = webworkers_VideoData.prototype._messageHandler");
+
+		var timer = new Timer(1000);
+		timer.run = function() untyped __js__("self").postMessage("GET_DATA");
 	}
 
-	public function messageHandler(event) {
+	function _messageHandler(event) {
 		var _contextData:Uint8ClampedArray = event.data;
 		var _bits:Array<Int> = [];
 		var _bytes:Array<String> = [];

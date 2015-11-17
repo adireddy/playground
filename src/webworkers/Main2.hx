@@ -1,5 +1,6 @@
 package webworkers;
 
+import js.html.XMLHttpRequest;
 import js.html.Uint8ClampedArray;
 import js.Browser;
 import js.html.CanvasRenderingContext2D;
@@ -8,7 +9,7 @@ import haxe.Timer;
 import js.html.VideoElement;
 import js.html.ImageElement;
 
-class Main {
+class Main2 {
 
 	var _videoElement:VideoElement;
 	var _videoCover:ImageElement;
@@ -46,6 +47,8 @@ class Main {
 
 		Browser.document.body.appendChild(_videoElement);
 		Browser.document.body.appendChild(_canvas);
+
+		_loadJson();
 	}
 
 	function _getBarCodeData() {
@@ -129,7 +132,21 @@ class Main {
 		trace(_data);
 	}
 
+	function _loadJson() {
+		var request = new XMLHttpRequest();
+		request.onreadystatechange = function() {
+			if (request.readyState == 4) {
+				if (request.status == 200) {
+					trace(request.responseText);
+				}
+			}
+		}
+
+		request.open("GET", "resources/checkstyle-config.json", true);
+		request.send(null);
+	}
+
 	static function main() {
-		new Main();
+		new Main2();
 	}
 }
