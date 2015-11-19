@@ -20,8 +20,6 @@
 --next
 -js js/VideoData.js
 webworkers.VideoData
--debug
--D source-map-content
 
 --next
 -main webworkers.Main2
